@@ -1,0 +1,178 @@
+[colors]
+background = #1b2b34
+foreground = #c0c5ce
+;foreground-alt = #fac863
+foreground-alt = #6699cc
+alert = #ec5f67
+
+[bar/top]
+;monitor = ${env:MONITOR:Virtual1}
+width = 100%
+height = 24
+radius = 0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+;line-size = 0
+;line-color = #000
+
+;border-size = 0
+;border-bottom-size = 0
+;border-color = #000
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 0
+
+; Icons
+font-0 = "NotoMono Nerd Font Mono:pixelsize=16;4"
+; Datetime
+font-1 = "NotoMono Nerd Font Sans:pixelsize=10;3"
+; Metrics percentages
+font-2 = "NotoMono Nerd Font Mono:pixelsize=10;3"
+; Metrics titles
+font-3 = "NotoMono Nerd Font Mono:weight=bold:pixelsize=10;3"
+; Workspaces
+font-4 = "NotoMono Nerd Font Sans:pixelsize=10;3"
+
+modules-left = start i3
+modules-center = date
+modules-right = pulseaudio cpu memory battery
+
+tray-position = right
+tray-detached = false
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 2
+tray-scale = 1.0
+
+wm-restack = i3
+
+;override-redirect = true
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = pointer
+
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+format-font = 5
+
+; Only show workspaces on the same output as the bar
+pin-workspaces = true
+
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.foreground}
+label-focused-foreground = ${colors.background}
+label-focused-padding = 2
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-background = ${colors.background}
+label-unfocused-foreground = ${colors.foreground}
+label-unfocused-padding = ${self.label-focused-padding}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-foreground = ${self.label-focused-foreground}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = ${self.label-focused-padding}
+
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "CPU "
+format-prefix-foreground = ${colors.foreground}
+label = %percentage%%
+label-font = 3
+format-prefix-font = 4
+
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "RAM "
+format-prefix-foreground = ${colors.foreground}
+label = %percentage_used%%
+label-font = 3
+format-prefix-font = 4
+
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = "%A, %d.%m.%Y"
+time = %H:%M
+label = %date% %time%
+label-font = 2
+label-foreground = ${colors.foreground}
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume-prefix = "VOL "
+format-volume-prefix-foreground = ${colors.foreground}
+format-volume = <label-volume>
+label-volume = "%percentage%%"
+
+label-muted = "MUTED"
+format-muted-prefix = "VOL "
+format-muted-prefix-foreground = ${colors.foreground}
+
+label-volume-font = 3
+label-muted-font = 3
+format-volume-prefix-font = 4
+format-muted-prefix-font = 4
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 100
+
+format-charging-prefix = "BAT "
+format-charging-prefix-foreground = ${colors.foreground-alt}
+format-charging = <label-charging>
+
+format-discharging-prefix = "BAT "
+format-discharging-prefix-foreground = ${colors.foreground-alt}
+format-discharging = <label-discharging>
+
+format-full-prefix = "BAT "
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full = "FULL"
+
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
