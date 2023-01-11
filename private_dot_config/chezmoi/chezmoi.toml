@@ -1,0 +1,4 @@
+[diff]
+	command = "diff"
+	args = ["--color", "{{ .Destination }}", "{{ .Target }}"]
+	pager = "cat"
