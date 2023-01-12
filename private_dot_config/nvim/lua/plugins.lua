@@ -32,8 +32,11 @@ local function plugins(use)
 	use { "wbthomason/packer.nvim" }
 	use { "mhartington/oceanic-next" }
 	use { "ms-jpq/coq_nvim", branch = "coq" }
+	use { "ms-jpq/coq.artifacts", branch = "artifacts" }
+	use { "ms-jpq/coq.thirdparty", branch = "3p" }
 	use { "neovim/nvim-lspconfig" }
 	use { "rhysd/vim-clang-format" }
+	use { "tanvirtin/vgit.nvim", requires = { "nvim-lua/plenary.nvim" } }
 
 	if (packer_bootstrap) then
 		print "Restart Neovim required after installation!"
@@ -47,14 +50,16 @@ local packer = require("packer")
 packer.init(conf)
 packer.startup(plugins)
 
-local function lsp_on_attach(client, bufnr)
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-	-- local bufopts = { noremap = true, silent = true, buffer = bufnr }
-end
+-- Automatically start COQ
+vim.g.coq_settings = {
+	auto_start = "shut-up"
+}
+local coq = require("coq")
 
 -- Enable clangd
-local lspconfig = require("lspconfig")
-lspconfig.clangd.setup{
-	on_attach = lsp_on_attach,
-}
+local lsp = require("lspconfig")
+lsp.clangd.setup{coq.lsp_ensure_capabilities()}
+
+-- VGit
+local vgit = require("vgit")
+vgit.setup()
