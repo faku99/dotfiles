@@ -1,0 +1,12 @@
+# Import theme
+import:
+  - ~/.config/alacritty/themes/oceanic-next.yml
+
+cursor:
+  style:
+    shape: Block
+    blinking: Never
+
+window:
+  opacity: 1.0
+
