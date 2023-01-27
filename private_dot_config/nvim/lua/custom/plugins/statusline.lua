@@ -53,6 +53,34 @@ return {
         return "%#St_file_sep#" .. sep_l .. "%#St_file_info#" .. filename .. "%#St_file_sep#" .. sep_r
     end,
 
+    LSP_Diagnostics = function()
+        if (not rawget(vim, "lsp")) then
+            return ""
+        end
+
+        local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+        local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+        local hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
+        local info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
+
+        local errors_str = (errors and (errors > 0)) and ("%#St_lspError#" .. "" .. errors .. " ") or ""
+        local warnings_str = (warnings and (warnings > 0)) and ("%#St_lspWarning#" .. "" .. warnings .. " ") or ""
+        local hints_str = (hints and (hints > 0)) and ("%#St_lspHint#" .. "" .. hints .. " ") or ""
+        local info_str = (info and (info > 0)) and ("%#St_lspInfo#" .. "" .. info .. " ") or ""
+
+        return errors_str .. warnings_str .. hints_str .. info_str
+    end,
+
+    LSP_status = function()
+        if (rawget(vim, "lsp")) then
+            for _, client in ipairs(vim.lsp.get_active_clients()) do
+                if (client.attached_buffers[vim.api.nvim_get_current_buf()]) then
+                    return "  "
+                end
+            end
+        end
+    end,
+
     cwd = function()
         return ""
     end,
