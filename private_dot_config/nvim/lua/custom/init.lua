@@ -15,8 +15,8 @@ vim.o.syntax = true
 vim.o.tabstop = 4
 vim.o.termguicolors = true
 
--- vim.g.oceanic_next_terminal_bold = 1
--- vim.cmd('colorscheme OceanicNext');
+vim.g.oceanic_next_terminal_bold = 1
+vim.cmd('colorscheme OceanicNext');
 
 vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
   pattern = { '*' },
