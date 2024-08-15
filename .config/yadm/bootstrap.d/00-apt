@@ -1,0 +1,31 @@
+#!/bin/bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+source "${SCRIPT_DIR}/utils.sh"
+
+# List packages to install with apt here.
+packages=(
+    alacritty
+    flameshot
+    git
+    hyprland
+    numlockx
+    psmisc
+    python3
+    python3-pip
+    waybar
+    wget
+    zsh
+)
+
+# sudo apt-get update
+
+# sudo apt-get install -y "${packages[@]}"
+
+for package in "${packages[@]}"; do
+    install_package ${package}
+done
+
+
+exit 0
