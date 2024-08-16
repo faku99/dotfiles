@@ -3,7 +3,7 @@
 BOOTSTRAPD_DIR="${HOME}/.config/yadm/bootstrap.d"
 
 echo "Updating the yadm repo origin URL"
-yadm remote set-url origin "git@github.com/faku99/dotfiles.git"
+yadm remote set-url origin "git@github.com:faku99/dotfiles.git"
 
 echo "Updating apt repositories..."
 sudo apt-get update
