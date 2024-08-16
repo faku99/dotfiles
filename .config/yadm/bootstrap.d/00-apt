@@ -8,6 +8,7 @@ source "${SCRIPT_DIR}/utils.sh"
 packages=(
     alacritty
     flameshot
+    fuzzel
     git
     hyprland
     numlockx
