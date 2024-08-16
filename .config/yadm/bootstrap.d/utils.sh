@@ -7,8 +7,9 @@ install_package() {
     sudo dpkg -l | grep -qw "$1"
 
     if [ $? ]; then
-        echo "$1: INSTALLED"
+        echo "'$1' already installed. Skipping"
     else
-        echo "$1: NOT INSTALLED"
+        echo "'$1' not installed. Installing..."
+        sudo apt-get install -y $1 --no-recommends
     fi
 }
