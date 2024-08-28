@@ -50,3 +50,7 @@ export NVM_DIR="$HOME/.nvm"
 if [ $(hostname) = "lel-debian" ]; then
     source "${HOME}/tandem/sigi/.sigi"
 fi
+
+# Deno
+export DENO_INSTALL="${HOME}/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
