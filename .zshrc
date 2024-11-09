@@ -54,3 +54,9 @@ fi
 # Deno
 export DENO_INSTALL="${HOME}/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+# Flutter
+export PATH="$HOME/sources/flutter/bin:$PATH"
+
+# pipx
+export PATH="$HOME/.local/bin:$PATH"
